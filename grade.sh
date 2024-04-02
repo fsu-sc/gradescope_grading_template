@@ -12,15 +12,13 @@
 # QUESTION: Can the expected files be of the form: src/labxx.py, for example?
 
 # Install utilities that allow the creation of results.json and allow decorators
-#if [ -d pytest_utils ]; then
-#    cd pytest_utils
-#    git pull origin master
-#else
-#    git clone https://github.com/ucsb-gradescope-tools/pytest_utils.git
-#    cd pytest_utils
-#fi
-
-cd pytest_utils
+if [ -d pytest_utils ]; then
+    cd pytest_utils
+    git pull origin master
+else
+    git clone https://github.com/ucsb-gradescope-tools/pytest_utils.git
+    cd pytest_utils
+fi
 pip3 install -e .
 cd ..
 
@@ -63,8 +61,9 @@ echo ""; echo "before mkdir -p  MAKE-STUDENT-OUTPUT"
 mkdir -p /autograder/MAKE-STUDENT-OUTPUT
 echo ""; echo "after mkdir -p  MAKE-STUDENT-OUTPUT, ls: `ls`"
 
-mkdir /autograder/MAKE-STUDENT-OUTPUT/CODE
+#mkdir /autograder/MAKE-STUDENT-OUTPUT/CODE
 mkdir /autograder/MAKE-STUDENT-OUTPUT/TEST
+mkdir /autograder/MAKE-STUDENT-OUTPUT/TEST/student_code_with_answers
 
 cd /autograder/MAKE-STUDENT-OUTPUT
 
@@ -74,7 +73,7 @@ list_files_from_dir $SUBMISSION_SOURCE;  echo " "
 
 # mv all the files to .
 # Not sure about the purpose of $f
-cp -v -r $SUBMISSION_SOURCE/* /autograder/MAKE-STUDENT-OUTPUT/CODE
+cp -v -r $SUBMISSION_SOURCE/* /autograder/MAKE-STUDENT-OUTPUT/TEST/student_code_with_answers
 # git-repo contains a single folder: the grading repository. 
 # Perhaps do a 'mv' instead of 'cp' for efficiency?
 # cp allowed for better debugging. I can repeat run_autograde multiple times
@@ -85,13 +84,11 @@ cd /autograder/MAKE-STUDENT-OUTPUT/TEST
 # What if I have multiple files to run?
 rm -f results.json
 
-# should not be needed if there is a requirements.txt
-pip install -r requirements.txt
-
 # Run as many tests as necessary
 #python3 -m pytest test_structure.py
 #python3 test_structure.py
 #
+pip install -r requirements.txt
 
 # There is only one folder in git-repo
 #cd /autograder/git-repo/*
