@@ -1,4 +1,4 @@
-#
+
 import pytest
 from pytest_utils.decorators import max_score, visibility, hide_errors
 import assert_utilities  # <<< SHOULD be specified in config
