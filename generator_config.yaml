@@ -1,24 +1,186 @@
+all_tests:
+  type: float
+  # By default: there is no score penalty
+  # Multiply max_score by partial_score_frac
+  partial_score_frac: 1.
+
 test_structure:
   # set all tests to fail
   assert_false: False
-  max_nb_words: 10
+  max_nb_words: 5
   fixture_import_file: my_fixtures
+
+# list of options that apply to all types. Sometimes
+# an option will not be used. They can be overridden
+# below in each type, individually. 
+# These options can also be overriden in the homework yaml files. 
 
 test_answers:
   # set all tests to fail
   assert_false: False
   fixture_import_file: my_fixtures
 
+  # Allow partial scoring
+  partial_scoring: True
+
+  # Relative error tolerance
+  rel_tol: 0.01
+
+  # Absolute error tolerance
+  abs_tol: 1.e-5
+
+  # List of keys to exclude for structure and answer checks. 
+  # Default: do not exclude any keys from consideration.
+  exclude_keys: []
+
+  # List of keys to include for structure and answer checks.
+  # Default: include all keys from the instructor answer.
+  include_keys: []
+
+  # List of element indices to include for structure and answer checks. 
+  # Default: include all the indices found in the instructor answerw.
+  # Applies to type list[str]
+  include_indices: []
+
+  # List of element indices to exclude for structure and answer checks. 
+  # Default: do not exclude any elements from consideration
+  # Applies to type list[str]
+  exclude_indices: []
+
+  # Alternative choices for outer dictionary keys
+  # ???
+  outer_key_choices: {}
+ 
+  # Alternative choices for inner dictionary keys
+  # ???
+  inner_key_choices: {}
+ 
+  # Alternative choices for string values associated with dictionary keys
+  # Assume a dictionary with keys: 'a', 'b'
+  # str_value_choices: {'a': ['word1', 'word2'], 'b': ['word3', 'word4']}
+  str_value_choices: {}
+ 
+  # Alternative choices for string values, which applies to the 'str' answer type.
+  # str_choices: ['word1', 'word2']
+  str_choices: []
+
+  # local_namespaces: required for use to call the functions in type_handlers.py
+  local_namespaces: {}
+
+  # locals: local variables for use in eval_float()
+  locals: {}
+
+  # The minimum number of words required in an answer that is explanatory.
+  mix_nb_words: 5
+
+# Options related to type
+types:
+  bool: {}
+  dendogram: {}
+  dict[int,list[float]]:
+    options:
+    - rel_tol
+    - abs_tol
+    - partial_score
+  dict[int,ndarray]:
+    options:
+    - rel_tol
+    - abs_tol
+  dict[str,dict[str,float]]:
+    options:
+    - rel_tol
+    - abs_tol
+    - partial_score
+  dict[str,float]:
+    options:
+    - rel_tol
+    - abs_tol
+    - partial_score
+  dict[str,ndarray]:
+    options:
+    - rel_tol
+    - abs_tol
+    - partial_score
+  dict[str,set[int]]: {}
+  dict[str,tuple[ndarray]]:
+    options:
+    - rel_tol
+    - abs_tol
+    - partial_score
+  dict[tuple[int],ndarray]: 
+    options:
+    - rel_tol
+    - abs_tol
+    - partial_score
+  eval_float:
+    options:
+    - local_namespaces: {'math': math}
+    - locals: {}
+    - rel_tol
+    - abs_tol
+  explain_string:
+    options:
+    - min_nb_words
+    - max_nb_words
+  float: 
+    options:
+    - rel_tol
+    - abs_tol
+  function: {}
+  int: {}
+  lineplot: {}
+  list[int]: {}
+  list[list[float]]: 
+    options:
+    - rel_tol
+    - abs_tol
+    - partial_score
+  list[ndarray]:
+    options:
+    - rel_tol
+    - abs_tol
+    - partial_score
+  list[str]: 
+    options:
+    - exclude_indices
+    - include_indices
+    - partial_score
+  ndarray:
+    options:
+    - rel_tol
+    - abs_tol
+  scatterplot3d: {}
+  scatterplot2d: {}
+  set[ndarray]:
+    options:
+    - rel_tol
+    - abs_tol
+  set[set[int]]: {}
+  set[str]:
+    options:
+    - partial_score
+  str: 
+    - str_choices
+  # dict: {}
+  # dict[str:set]: {}
+  # dict[str:dict[str:list]]: {}
+  # dict[int:list]: {}
+  # set
+
 imports:
   - assert_utilities
 
-student_code:
+student_code: {}
 
-instructor_code:
+instructor_code: {}
 
-fixtures: 
+fixtures:  {}
 
-mocks:
+mocks: {}
 
-modules:
+modules: {}
 
+more_options: 
+  - keys
+  - choices
+  - partial_score

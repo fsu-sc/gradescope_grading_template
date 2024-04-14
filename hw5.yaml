@@ -109,7 +109,7 @@ questions:
     - id: (c) Weight update
       type: eval_float
       answer: '0.5*math.log((1-p)/p)'
-      locals: ['p': [0.2, 0.4]]
+      locals: {'p': [0.2, 0.4]}
       note: The formulas should only use the variable 'p'. The formulas should be a valid Python expression. Use the functions in the math module as required. 
 
     - id: (d) Weight influence
@@ -184,22 +184,22 @@ questions:
   parts:
     - id: (a) C1-TPR
       type: eval_float
-      locals: ['p']
+      locals: {'p': [.1, .9]}
       answer: 'p'
 
     - id: (a) C2-TPR
       type: eval_float
-      locals: ['p']
+      locals: {'p': [.1, .9]}
       answer: '2*p'
 
     - id: (a) C1-FPR
       type: eval_float
-      locals: ['p']
+      locals: {'p': [.1, .9]}
       answer: 'p'
 
     - id: (a) C2-FPR
       type: eval_float
-      locals: ['p']
+      locals: {'p': [.1, .9]}
       answer: '2*p'
 
     - id: (b) C2 better classifier than C1?
@@ -284,17 +284,17 @@ questions:
     - id: (a) precision for C0
       # keys: 'precision' and 'recall'
       type: eval_float
-      locals: ["p": [0.01, 0.99]]
+      locals: {"p": [0.01, 0.99]}
       answer: "1/10"
 
     - id: (a) recall for C0
       type: eval_float
-      locals: ["p": [0.01, 0.99]]
+      locals: {"p": [0.01, 0.99]}
       answer: "p"
 
     - id: (b) F-measure of C0
       type: eval_float
-      locals: ["p": [0.01, 0.99]]
+      locals: {"p": [0.01, 0.99]}
       answer: "(2*p/10) / (p + 1/10)"
 
     - id: C1 better than random?
