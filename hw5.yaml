@@ -8,7 +8,8 @@ module: all_questions
 
 # Folders are relative to the base project folder
 #student_folder_name: student_github_template
-student_folder_name: student_code_with_answers
+#student_folder_name: student_code_with_answers
+student_folder_name: piyush_choudhari
 instructor_folder_name: instructor_code_with_answers
 
 i_answer_source: instructor_file
@@ -92,8 +93,8 @@ questions:
       explanation: Boosting can significantly increase the model's variance due to the high weight it may place on outliers. In boosting, misclassified instances are given higher weights in subsequent rounds. If an outlier is consistently misclassified, it may receive an increasingly high weight, causing the model to overfit to that specific instance. This can lead to increased variance and reduced generalization performance on unseen data.
 
     - id: (b) B
-      type: False
-      answer: None
+      type: bool
+      answer: False
       explanation: Boosting does not often lead to underfitting. In fact, boosting is known for its ability to reduce bias and improve the model's performance on the training data. By focusing on misclassified instances and adjusting their weights, boosting aims to create a strong learner that can capture complex patterns in the data. Underfitting occurs when the model is too simple to capture the underlying patterns, which is not a typical characteristic of boosting.
 
     - id: (b) C
@@ -123,11 +124,11 @@ questions:
   parts:
     # "yes" or "no"
     - id: Agree?
-      type:  string
+      type:  str
       answer: "No"
 
     - id: Explain
-      type:  explain_string
+      type:  explain_str
       answer: > 
         No, because the ensemble of base classifiers gets a better 
         classification performance only when at least some of the 
@@ -159,22 +160,22 @@ questions:
 - id: question5
   parts:
     - id: (a)
-      type: string
+      type: str
       answer: 'iii'
       choices: ['i', 'ii', 'iii', 'iv']
 
     - id: (b)
-      type:  string
+      type:  str
       answer: 'i'
       choices: ['i', 'ii', 'iii', 'iv']
 
     - id: (c)
-      type:  string
+      type:  str
       answer: 'ii'
       choices: ['i', 'ii', 'iii', 'iv']
 
     - id: (d)
-      type:  string
+      type:  str
       answer: 'iv'
       choices: ['i', 'ii', 'iii', 'iv']
 
@@ -203,25 +204,25 @@ questions:
       answer: '2*p'
 
     - id: (b) C2 better classifier than C1?
-      type: string
+      type: str
       choices: ['yes', 'no']
       answer: no
       note: "Hint: The random guess line in an ROC curve corresponds to TPR=FPR."
 
     - id: (b) C2 better classifier than C1? Explain
-      type: explain_string
+      type: explain_str
       answer: >
         No, when p takes continuous value in the range [0, 1], both ROC 
         curves of C1 and C2 are the same with the random guess line, 
         which is TPR=FPR.
 
     - id: (c) Which metric? 
-      type: string
+      type: str
       choices: ["TPR/FPR", "precision/recall"]
       answer: "TPR/FPR"
 
     - id: (c) explain
-      type: explain_string
+      type: explain_str
       answer: > 
         Since C1 and C2 are both random classifiers, expected precision 
         for both of them are always the same, so precision contains 
@@ -238,12 +239,12 @@ questions:
     # "C1 worse than C2"
     # "neither is better"
     - id: (i) Best classifier? 
-      type: string
+      type: str
       choices: ["C1", "C2", "None"]
       answer: "None"
 
     - id: (i) Best classifier, explain
-      type: explain_string
+      type: explain_str
       answer: >
         None of C1 and C2 is better than the other.  The two classifiers 
         are random, as shown by their TPR/FPR (C1= 0.1/0.1; C2=0.5/0.5), 
@@ -251,11 +252,11 @@ questions:
 
     - id: (ii) appropriate metric pair
       choices: ["TPR-FPR", "precision-recall-F1-Measure"]
-      type: string
+      type: str
       answer: "TPR-FPR"
 
     - id: (ii) appropriate metric pair, explain
-      type: explain_string
+      type: explain_str
       answer: >
         Higher F-1 measure might be caused by C2 having a higher 
         probability of assigning an instance to (+) class, which 
@@ -263,12 +264,12 @@ questions:
         not mean that those + predictions are accurate)
 
     - id: (iii) preferred classifier? 
-      type: string
+      type: str
       choices: ["C1", "C2", "C3"]
       answer: "C3"
 
     - id: (iii) best classifier, explain 
-      type: explain_string
+      type: explain_str
       answer: > 
         C3 is the best classifier because it has the highest TPR/FPR=2. 
         TPR / FPR provides a better evaluation % of a model across 
@@ -298,7 +299,7 @@ questions:
       answer: "(2*p/10) / (p + 1/10)"
 
     - id: C1 better than random?
-      type: string
+      type: str
       choices: ["yes", "no", "unknown"]
       answer: "unknown"
       explanation: > 
@@ -320,21 +321,21 @@ questions:
 - id: question9
   parts:
     - id: (i) metrics
-      type: dict[string,float]
+      type: dict[str,float]
       answer: {'recall':0.53, 'precision':0.62, 'F-measure':0.57, 'accuracy':0.88}
 
     - id: (i) best metric? 
-      type: string
+      type: str
       choices: ['recall', 'precision', 'F-measure', 'accuracy']
       answer: {'F-measure'}
 
     - id: (i) worst metric? 
-      type: string
+      type: str
       choices: ['recall', 'precision', 'F-measure', 'accuracy']
       answer: {'accuracy'}
 
     - id: (ii) Explain your choices of best and worst metrics
-      type: explain_string
+      type: explain_str
       answer: >
         Accuracy is a poor metric because there is a class imbalance 
         problem (the sunshine (+) class is the minority), so accuracy 
@@ -346,22 +347,22 @@ questions:
 - id: question10
   parts:
     - id: (a) better test based on F-measure? 
-      type: string
+      type: str
       choices: ["T1", "T2"]
       answer: T1
 
     - id: (b) better test based on TPR/FPR?
-      type: string
+      type: str
       choices: ["T1", "T2"]
       answer: T2
 
     - id: (c) Which evaluation measure to use between the two tests? 
-      type: string
+      type: str
       choices: ["F1", "TPR/FPR"]
       answer: "TPR/FPR"
 
     - id: (c) Which evaluation measure? Explain
-      type: explain_string
+      type: explain_str
       answer:  >
         In this case, T2 is strictly better than T1 since both have the 
         same TPR and T2 has lower FPR.  Hence for any data set 
@@ -388,7 +389,7 @@ questions:
         on the exact same data set).
 
     - id: (d) Example scenario where you would reverse choise in (c)
-      type: explain_string
+      type: explain_str
       answer: >
         In a  scenario where you know the skew in the target population 
         matches that in the confusion matrix,  the F measure can be preferred 

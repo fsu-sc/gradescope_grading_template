@@ -26,5 +26,5 @@ else
     echo "Current date is later than the due date."
 
 #   >>>> CHANGE MANUALLY
-    # pytest -s --import-mode='append'  tests/test_answers_preprocessed_hw5_expand.py
+     pytest -s --import-mode='append'  tests/test_answers_preprocessed_hw5_expand.py
 fi
