@@ -9,7 +9,7 @@ module: all_questions
 # Folders are relative to the base project folder
 #student_folder_name: student_github_template
 #student_folder_name: student_code_with_answers
-student_folder_name: piyush_choudhari
+student_folder_name: anand
 instructor_folder_name: instructor_code_with_answers
 
 i_answer_source: instructor_file
